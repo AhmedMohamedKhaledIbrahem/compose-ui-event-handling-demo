@@ -6,7 +6,7 @@ It demonstrates:
 - 🧠 Event-driven UI with sealed classes
 
 ### 📸 Demo
-![UI State & Event Demo](https://github.com/user-attachments/assets/67765352-e1d0-49ba-a08d-cce634a89d23)
+![UI State & Event Demo](https://github.com/user-attachments/assets/05847b20-5141-4698-a252-7124d0e21167)
 
 # Tech Stack 
 - ViewModel 
