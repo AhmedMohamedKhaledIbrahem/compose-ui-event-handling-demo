@@ -20,29 +20,30 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.uieventandstate.UiEffect
 import com.example.uieventandstate.navigation.NavigateScreen
+import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun SignScreen(navController: NavHostController, snackBarHostState: SnackbarHostState) {
     val authViewModel = koinViewModel<AuthViewModel>()
     val state by authViewModel.state.collectAsState()
-    val event by authViewModel.event.collectAsState(initial = UiEffect.Idle)
-
-    LaunchedEffect(event) {
-        when (event) {
-            is UiEffect.Navigate -> {
-                navController.navigate(NavigateScreen.Home.route) {
-                    popUpTo(NavigateScreen.SignIn.route) { inclusive = true }
+    LaunchedEffect(Unit) {
+        authViewModel.event.collectLatest { event ->
+            when (event) {
+                is UiEffect.Navigate -> {
+                    navController.navigate(NavigateScreen.Home.route) {
+                        // popUpTo(NavigateScreen.SignIn.route) { inclusive = true }
+                    }
                 }
-            }
 
-            is UiEffect.ShowSnackBar -> {
-                snackBarHostState.showSnackbar(
-                    message = (event as UiEffect.ShowSnackBar).message
-                )
-            }
+                is UiEffect.ShowSnackBar -> {
+                    snackBarHostState.showSnackbar(
+                        message = event.message
+                    )
+                }
 
-            else -> {}
+                else -> {}
+            }
         }
     }
     Column {

@@ -41,7 +41,7 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    fun signIn(
+    private fun signIn(
 
     ) {
         viewModelScope.launch {
