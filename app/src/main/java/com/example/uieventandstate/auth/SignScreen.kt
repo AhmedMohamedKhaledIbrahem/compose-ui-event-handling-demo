@@ -32,7 +32,7 @@ fun SignScreen(navController: NavHostController, snackBarHostState: SnackbarHost
             when (event) {
                 is UiEffect.Navigate -> {
                     navController.navigate(NavigateScreen.Home.route) {
-                        // popUpTo(NavigateScreen.SignIn.route) { inclusive = true }
+                         popUpTo(NavigateScreen.SignIn.route) { inclusive = true }
                     }
                 }
 
